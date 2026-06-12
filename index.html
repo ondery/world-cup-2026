@@ -1,424 +1,1075 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FIFA Dünya Kupası 2026</title>
-<style>
-[data-theme=dark]{
-  --bg:#0c0d15;--s1:#161721;--s2:#1e2030;--brd:#27293c;
-  --txt:#ece9df;--mu:#6a6a8c;--acc:#e8a020;--acc2:#ffd166;
-  --grn:#22c55e;--red:#ef4444;--tur:#ff5c30;--blu:#60a5fa;
-  --hdr:linear-gradient(135deg,#0d1a35 0%,#1c1040 55%,#2e0f1f 100%);
-  --sh:0 4px 24px rgba(0,0,0,.6);--sh2:0 2px 10px rgba(0,0,0,.3)
-}
-[data-theme=light]{
-  --bg:#f4f2ec;--s1:#fff;--s2:#edebe5;--brd:#d8d4c9;
-  --txt:#18161e;--mu:#6b6880;--acc:#b37010;--acc2:#d4880e;
-  --grn:#15803d;--red:#b91c1c;--tur:#c94213;--blu:#1d4ed8;
-  --hdr:linear-gradient(135deg,#1a3a6a 0%,#1e1060 55%,#5a142a 100%);
-  --sh:0 4px 24px rgba(0,0,0,.10);--sh2:0 2px 10px rgba(0,0,0,.06)
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.5;transition:background .25s,color .25s}
-.wrap{max-width:1300px;margin:0 auto;padding:18px 14px}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIFA Dünya Kupası 2026</title>
+    <style>
+      [data-theme="dark"] {
+        --bg: #0c0d15;
+        --s1: #161721;
+        --s2: #1e2030;
+        --brd: #27293c;
+        --txt: #ece9df;
+        --mu: #6a6a8c;
+        --acc: #e8a020;
+        --acc2: #ffd166;
+        --grn: #22c55e;
+        --red: #ef4444;
+        --tur: #ff5c30;
+        --blu: #60a5fa;
+        --hdr: linear-gradient(135deg, #0d1a35 0%, #1c1040 55%, #2e0f1f 100%);
+        --sh: 0 4px 24px rgba(0, 0, 0, 0.6);
+        --sh2: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+      [data-theme="light"] {
+        --bg: #f4f2ec;
+        --s1: #fff;
+        --s2: #edebe5;
+        --brd: #d8d4c9;
+        --txt: #18161e;
+        --mu: #6b6880;
+        --acc: #b37010;
+        --acc2: #d4880e;
+        --grn: #15803d;
+        --red: #b91c1c;
+        --tur: #c94213;
+        --blu: #1d4ed8;
+        --hdr: linear-gradient(135deg, #1a3a6a 0%, #1e1060 55%, #5a142a 100%);
+        --sh: 0 4px 24px rgba(0, 0, 0, 0.1);
+        --sh2: 0 2px 10px rgba(0, 0, 0, 0.06);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--txt);
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        line-height: 1.5;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+      .wrap {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 18px 14px;
+      }
 
-/* HEADER */
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-header{
-  background:var(--hdr);border-radius:20px;padding:26px 28px;margin-bottom:22px;
-  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);
-  box-shadow:var(--sh);animation:fadeUp .45s ease both
-}
-header::before{content:"⚽";position:absolute;right:-8px;top:-22px;font-size:155px;opacity:.07;transform:rotate(-12deg);pointer-events:none}
-.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.hdr-eyebrow{font-size:10.5px;letter-spacing:2.8px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8px;font-weight:700}
-header h1{font:700 27px/1.1 Georgia,serif;color:#fff;letter-spacing:-.3px}
-header h1 .y{color:var(--acc2)}
-.hdr-sub{color:rgba(255,255,255,.55);font-size:13px;margin-top:5px}
-.hdr-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:4px 12px;border-radius:100px;font-size:11.5px;color:rgba(255,255,255,.82);white-space:nowrap}
-.headline-bar{margin-top:14px;background:rgba(0,0,0,.22);border-left:3px solid var(--acc2);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13.5px;color:rgba(255,255,255,.88);line-height:1.6}
-.theme-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:50%;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .2s;flex-shrink:0;user-select:none}
-.theme-btn:hover{background:rgba(255,255,255,.22);transform:scale(1.08)}
+      /* HEADER */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      header {
+        background: var(--hdr);
+        border-radius: 20px;
+        padding: 26px 28px;
+        margin-bottom: 22px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: var(--sh);
+        animation: fadeUp 0.45s ease both;
+      }
+      header::before {
+        content: "⚽";
+        position: absolute;
+        right: -8px;
+        top: -22px;
+        font-size: 155px;
+        opacity: 0.07;
+        transform: rotate(-12deg);
+        pointer-events: none;
+      }
+      .hdr-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .hdr-eyebrow {
+        font-size: 10.5px;
+        letter-spacing: 2.8px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+      header h1 {
+        font:
+          700 27px/1.1 Georgia,
+          serif;
+        color: #fff;
+        letter-spacing: -0.3px;
+      }
+      header h1 .y {
+        color: var(--acc2);
+      }
+      .hdr-sub {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 13px;
+        margin-top: 5px;
+      }
+      .hdr-pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .pill {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        color: rgba(255, 255, 255, 0.82);
+        white-space: nowrap;
+      }
+      .headline-bar {
+        margin-top: 14px;
+        background: rgba(0, 0, 0, 0.22);
+        border-left: 3px solid var(--acc2);
+        border-radius: 0 10px 10px 0;
+        padding: 10px 14px;
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.6;
+      }
+      .theme-btn {
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        transition: all 0.2s;
+        flex-shrink: 0;
+        user-select: none;
+      }
+      .theme-btn:hover {
+        background: rgba(255, 255, 255, 0.22);
+        transform: scale(1.08);
+      }
 
-/* SECTIONS */
-section{margin-bottom:26px}
-h2{font:600 15.5px/1 Georgia,serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:var(--txt)}
-h2 .hl{flex:1;height:1px;background:var(--brd)}
-.muted{color:var(--mu);font-size:12.5px}
-.card{background:var(--s1);border:1px solid var(--brd);border-radius:14px;padding:16px;box-shadow:var(--sh2);transition:background .25s,border-color .25s}
+      /* SECTIONS */
+      section {
+        margin-bottom: 26px;
+      }
+      h2 {
+        font:
+          600 15.5px/1 Georgia,
+          serif;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--txt);
+      }
+      h2 .hl {
+        flex: 1;
+        height: 1px;
+        background: var(--brd);
+      }
+      .muted {
+        color: var(--mu);
+        font-size: 12.5px;
+      }
+      .card {
+        background: var(--s1);
+        border: 1px solid var(--brd);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: var(--sh2);
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
 
-/* PICKER */
-.picker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--s1);border:1px solid var(--brd);border-radius:14px;padding:12px 16px;margin-bottom:14px;box-shadow:var(--sh2)}
-.picker label{font-size:13px;color:var(--mu);font-weight:500;white-space:nowrap}
-.picker select{background:var(--s2);color:var(--txt);border:1px solid var(--brd);border-radius:8px;padding:6px 9px;font-size:13px;max-width:172px;cursor:pointer;transition:border-color .2s}
-.picker select:focus{outline:none;border-color:var(--acc)}
-.picker button{background:transparent;color:var(--mu);border:1px solid var(--brd);border-radius:8px;padding:6px 12px;font-size:12.5px;cursor:pointer;transition:all .2s}
-.picker button:hover{color:var(--txt);border-color:var(--mu)}
+      /* PICKER */
+      .picker {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        background: var(--s1);
+        border: 1px solid var(--brd);
+        border-radius: 14px;
+        padding: 12px 16px;
+        margin-bottom: 14px;
+        box-shadow: var(--sh2);
+      }
+      .picker label {
+        font-size: 13px;
+        color: var(--mu);
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .picker select {
+        background: var(--s2);
+        color: var(--txt);
+        border: 1px solid var(--brd);
+        border-radius: 8px;
+        padding: 6px 9px;
+        font-size: 13px;
+        max-width: 172px;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+      .picker select:focus {
+        outline: none;
+        border-color: var(--acc);
+      }
+      .picker button {
+        background: transparent;
+        color: var(--mu);
+        border: 1px solid var(--brd);
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 12.5px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .picker button:hover {
+        color: var(--txt);
+        border-color: var(--mu);
+      }
 
-/* FAV CARDS */
-.favgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.fav{background:var(--s1);border:1px solid var(--brd);border-radius:14px;padding:16px;border-top:3px solid var(--blu);box-shadow:var(--sh2);transition:transform .2s,box-shadow .2s,border-color .25s,background .25s}
-.fav:hover{transform:translateY(-2px);box-shadow:var(--sh)}
-.fav.tur{border-top-color:var(--tur)}
-[data-theme=dark] .fav.tur{background:linear-gradient(160deg,rgba(255,92,48,.09) 0%,var(--s1) 38%)}
-[data-theme=light] .fav.tur{background:linear-gradient(160deg,rgba(201,66,19,.06) 0%,var(--s1) 38%)}
-.fav .head{display:flex;align-items:center;gap:8px;font:700 16px/1.2 Georgia,serif}
-.fav .head .flag{font-size:24px}
-.fav .grp{margin-left:auto;font-size:11px;background:var(--s2);border:1px solid var(--brd);padding:2px 9px;border-radius:20px;color:var(--mu)}
-.fav .status{margin-top:8px;font-size:12.5px;color:var(--acc)}
-.fav .next{margin-top:6px;font-size:13px}
-.fav .next b{color:var(--grn)}
-.fav table{width:100%;margin-top:10px;border-collapse:collapse;font-size:12px}
-.fav td{padding:4px 2px;border-top:1px solid var(--brd);color:var(--mu)}
-.fav td:first-child{color:var(--txt)}
-.fav .note{margin-top:8px;font-size:11.5px;color:var(--mu);font-style:italic;line-height:1.5}
-.favhint{font-size:12.5px;color:var(--mu)}
+      /* FAV CARDS */
+      .favgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 14px;
+      }
+      .fav {
+        background: var(--s1);
+        border: 1px solid var(--brd);
+        border-radius: 14px;
+        padding: 16px;
+        border-top: 3px solid var(--blu);
+        box-shadow: var(--sh2);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          border-color 0.25s,
+          background 0.25s;
+      }
+      .fav:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--sh);
+      }
+      .fav.tur {
+        border-top-color: var(--tur);
+      }
+      [data-theme="dark"] .fav.tur {
+        background: linear-gradient(
+          160deg,
+          rgba(255, 92, 48, 0.09) 0%,
+          var(--s1) 38%
+        );
+      }
+      [data-theme="light"] .fav.tur {
+        background: linear-gradient(
+          160deg,
+          rgba(201, 66, 19, 0.06) 0%,
+          var(--s1) 38%
+        );
+      }
+      .fav .head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font:
+          700 16px/1.2 Georgia,
+          serif;
+      }
+      .fav .head .flag {
+        font-size: 24px;
+      }
+      .fav .grp {
+        margin-left: auto;
+        font-size: 11px;
+        background: var(--s2);
+        border: 1px solid var(--brd);
+        padding: 2px 9px;
+        border-radius: 20px;
+        color: var(--mu);
+      }
+      .fav .status {
+        margin-top: 8px;
+        font-size: 12.5px;
+        color: var(--acc);
+      }
+      .fav .next {
+        margin-top: 6px;
+        font-size: 13px;
+      }
+      .fav .next b {
+        color: var(--grn);
+      }
+      .fav table {
+        width: 100%;
+        margin-top: 10px;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+      .fav td {
+        padding: 4px 2px;
+        border-top: 1px solid var(--brd);
+        color: var(--mu);
+      }
+      .fav td:first-child {
+        color: var(--txt);
+      }
+      .fav .note {
+        margin-top: 8px;
+        font-size: 11.5px;
+        color: var(--mu);
+        font-style: italic;
+        line-height: 1.5;
+      }
+      .favhint {
+        font-size: 12.5px;
+        color: var(--mu);
+      }
 
-/* MATCH ROWS */
-.matchrow{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:10px;background:var(--s2);border:1px solid var(--brd);margin-bottom:8px;flex-wrap:wrap;transition:background .25s,border-color .25s}
-.matchrow.favmatch{border-color:var(--tur)}
-[data-theme=dark] .matchrow.favmatch{background:rgba(255,92,48,.08)}
-[data-theme=light] .matchrow.favmatch{background:rgba(201,66,19,.05)}
-.matchrow .time{font:700 13px/1 'Courier New',Consolas,monospace;color:var(--acc);min-width:82px}
-.matchrow .grp{font-size:10.5px;background:var(--s1);border:1px solid var(--brd);padding:2px 8px;border-radius:8px;color:var(--mu)}
-.matchrow .teams{font-size:14px;font-weight:600;flex:1}
-.matchrow .score{font:800 15px/1 'Courier New',Consolas,monospace;color:var(--grn)}
-.matchrow .venue{margin-left:auto;color:var(--mu);font-size:11.5px}
-.matchrow .mnote{width:100%;font-size:12px;color:var(--tur)}
-.resnote{font-size:11.5px;color:var(--mu);width:100%;padding-top:2px;line-height:1.5}
+      /* MATCH ROWS */
+      .matchrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 13px;
+        border-radius: 10px;
+        background: var(--s2);
+        border: 1px solid var(--brd);
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .matchrow.favmatch {
+        border-color: var(--tur);
+      }
+      [data-theme="dark"] .matchrow.favmatch {
+        background: rgba(255, 92, 48, 0.08);
+      }
+      [data-theme="light"] .matchrow.favmatch {
+        background: rgba(201, 66, 19, 0.05);
+      }
+      .matchrow .time {
+        font:
+          700 13px/1 "Courier New",
+          Consolas,
+          monospace;
+        color: var(--acc);
+        min-width: 82px;
+      }
+      .matchrow .grp {
+        font-size: 10.5px;
+        background: var(--s1);
+        border: 1px solid var(--brd);
+        padding: 2px 8px;
+        border-radius: 8px;
+        color: var(--mu);
+      }
+      .matchrow .teams {
+        font-size: 14px;
+        font-weight: 600;
+        flex: 1;
+      }
+      .matchrow .score {
+        font:
+          800 15px/1 "Courier New",
+          Consolas,
+          monospace;
+        color: var(--grn);
+      }
+      .matchrow .venue {
+        margin-left: auto;
+        color: var(--mu);
+        font-size: 11.5px;
+      }
+      .matchrow .mnote {
+        width: 100%;
+        font-size: 12px;
+        color: var(--tur);
+      }
+      .resnote {
+        font-size: 11.5px;
+        color: var(--mu);
+        width: 100%;
+        padding-top: 2px;
+        line-height: 1.5;
+      }
 
-/* LAYOUT */
-.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:860px){.twocol{grid-template-columns:1fr}}
+      /* LAYOUT */
+      .twocol {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      @media (max-width: 860px) {
+        .twocol {
+          grid-template-columns: 1fr;
+        }
+      }
 
-/* SCORERS */
-.scorers{width:100%;border-collapse:collapse;font-size:13.5px}
-.scorers th{font-size:10.5px;color:var(--mu);text-align:left;padding:7px 10px;border-bottom:1px solid var(--brd);font-weight:700;letter-spacing:.8px;text-transform:uppercase}
-.scorers td{padding:9px 10px;border-bottom:1px solid var(--brd)}
-.scorers tr:last-child td{border-bottom:none}
-.scorers .g{font:700 16px/1 'Courier New',monospace;color:var(--acc);text-align:center}
-.crown{color:var(--acc)}
+      /* SCORERS */
+      .scorers {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+      }
+      .scorers th {
+        font-size: 10.5px;
+        color: var(--mu);
+        text-align: left;
+        padding: 7px 10px;
+        border-bottom: 1px solid var(--brd);
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+      .scorers td {
+        padding: 9px 10px;
+        border-bottom: 1px solid var(--brd);
+      }
+      .scorers tr:last-child td {
+        border-bottom: none;
+      }
+      .scorers .g {
+        font:
+          700 16px/1 "Courier New",
+          monospace;
+        color: var(--acc);
+        text-align: center;
+      }
+      .crown {
+        color: var(--acc);
+      }
 
-/* GROUPS */
-.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(282px,1fr));gap:14px}
-.gcard{background:var(--s1);border:1px solid var(--brd);border-radius:14px;overflow:hidden;box-shadow:var(--sh2);transition:transform .2s,background .25s,border-color .25s}
-.gcard:hover{transform:translateY(-1px)}
-.gcard .gtitle{background:var(--s2);padding:9px 14px;font:700 13px/1 Georgia,serif;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--brd)}
-.gcard table{width:100%;border-collapse:collapse;font-size:12px}
-.gcard th{color:var(--mu);font-size:10px;padding:6px 4px;text-align:center;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
-.gcard td{padding:6px 4px;text-align:center;border-top:1px solid var(--brd)}
-.gcard td.t{text-align:left;padding-left:12px;white-space:nowrap}
-.gcard tr.q1 td:first-child{border-left:3px solid var(--grn)}
-.gcard tr.q3 td:first-child{border-left:3px solid var(--acc)}
-.gcard tr.q4 td:first-child{border-left:3px solid transparent}
-.gcard tr.favrow{background:rgba(255,92,48,.08)}
-[data-theme=light] .gcard tr.favrow{background:rgba(201,66,19,.06)}
-.gcard td.pts{font:700 13px/1 'Courier New',monospace;color:var(--acc)}
-.legend{font-size:11.5px;color:var(--mu);margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}
-.dotg{color:var(--grn)}.dota{color:var(--acc)}
+      /* GROUPS */
+      .groups {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+        gap: 14px;
+      }
+      .gcard {
+        background: var(--s1);
+        border: 1px solid var(--brd);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: var(--sh2);
+        transition:
+          transform 0.2s,
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .gcard:hover {
+        transform: translateY(-1px);
+      }
+      .gcard .gtitle {
+        background: var(--s2);
+        padding: 9px 14px;
+        font:
+          700 13px/1 Georgia,
+          serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--brd);
+      }
+      .gcard table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+      .gcard th {
+        color: var(--mu);
+        font-size: 10px;
+        padding: 6px 4px;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+      .gcard td {
+        padding: 6px 4px;
+        text-align: center;
+        border-top: 1px solid var(--brd);
+      }
+      .gcard td.t {
+        text-align: left;
+        padding-left: 12px;
+        white-space: nowrap;
+      }
+      .gcard tr.q1 td:first-child {
+        border-left: 3px solid var(--grn);
+      }
+      .gcard tr.q3 td:first-child {
+        border-left: 3px solid var(--acc);
+      }
+      .gcard tr.q4 td:first-child {
+        border-left: 3px solid transparent;
+      }
+      .gcard tr.favrow {
+        background: rgba(255, 92, 48, 0.08);
+      }
+      [data-theme="light"] .gcard tr.favrow {
+        background: rgba(201, 66, 19, 0.06);
+      }
+      .gcard td.pts {
+        font:
+          700 13px/1 "Courier New",
+          monospace;
+        color: var(--acc);
+      }
+      .legend {
+        font-size: 11.5px;
+        color: var(--mu);
+        margin-top: 10px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .dotg {
+        color: var(--grn);
+      }
+      .dota {
+        color: var(--acc);
+      }
 
-/* BRACKET */
-.bracketwrap{overflow-x:auto;padding-bottom:8px}
-.bracket{display:flex;gap:16px;min-width:1150px}
-.round{display:flex;flex-direction:column;justify-content:space-around;gap:8px;flex:1}
-.round h3{font-size:11px;color:var(--mu);text-align:center;margin-bottom:2px;letter-spacing:.8px;text-transform:uppercase}
-.bm{background:var(--s2);border:1px solid var(--brd);border-radius:10px;padding:8px 10px;font-size:11.5px;transition:border-color .25s}
-.bm.tur{border-color:var(--tur);box-shadow:0 0 0 1px var(--tur)}
-.bm .mid{color:var(--mu);font-size:10px;display:flex;justify-content:space-between;margin-bottom:4px}
-.bm .tm{display:flex;justify-content:space-between;padding:2px 0}
-.bm.final{border-color:var(--acc)}
-[data-theme=dark] .bm.final{background:linear-gradient(160deg,rgba(232,160,32,.1),var(--s2))}
-[data-theme=light] .bm.final{background:linear-gradient(160deg,rgba(179,112,16,.08),var(--s2))}
-.bm.final .mid{color:var(--acc)}
-.turpath{margin-top:12px;font-size:13px;background:var(--s2);border:1px dashed var(--tur);border-radius:10px;padding:12px 16px;line-height:1.6}
-.facts li{margin:7px 0 7px 20px;font-size:13.5px;line-height:1.6}
-footer{color:var(--mu);font-size:12px;text-align:center;padding:16px 0 30px;border-top:1px solid var(--brd);margin-top:8px}
-footer a{color:var(--blu);text-decoration:none}
-footer a:hover{text-decoration:underline}
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--brd);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:var(--mu)}
-</style>
-</head>
-<body>
-<div class="wrap">
-
-  <header>
-    <div class="hdr-top">
-      <div>
-        <div class="hdr-eyebrow">FIFA · ABD · Kanada · Meksika · 48 Takım · 104 Maç</div>
-        <h1>🏆 Dünya Kupası <span class="y">2026</span></h1>
-        <div class="hdr-sub">11 Haziran – 19 Temmuz &nbsp;|&nbsp; 16 Şehir · 3 Ülke</div>
-        <div class="hdr-pills">
-          <span class="pill" id="bDay"></span>
-          <span class="pill" id="bUpdate"></span>
-          <span class="pill">⏰ Tüm saatler TSİ</span>
+      /* BRACKET */
+      .bracketwrap {
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+      .bracket {
+        display: flex;
+        gap: 16px;
+        min-width: 1150px;
+      }
+      .round {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 8px;
+        flex: 1;
+      }
+      .round h3 {
+        font-size: 11px;
+        color: var(--mu);
+        text-align: center;
+        margin-bottom: 2px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+      .bm {
+        background: var(--s2);
+        border: 1px solid var(--brd);
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-size: 11.5px;
+        transition: border-color 0.25s;
+      }
+      .bm.tur {
+        border-color: var(--tur);
+        box-shadow: 0 0 0 1px var(--tur);
+      }
+      .bm .mid {
+        color: var(--mu);
+        font-size: 10px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+      }
+      .bm .tm {
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 0;
+      }
+      .bm.final {
+        border-color: var(--acc);
+      }
+      [data-theme="dark"] .bm.final {
+        background: linear-gradient(160deg, rgba(232, 160, 32, 0.1), var(--s2));
+      }
+      [data-theme="light"] .bm.final {
+        background: linear-gradient(
+          160deg,
+          rgba(179, 112, 16, 0.08),
+          var(--s2)
+        );
+      }
+      .bm.final .mid {
+        color: var(--acc);
+      }
+      .turpath {
+        margin-top: 12px;
+        font-size: 13px;
+        background: var(--s2);
+        border: 1px dashed var(--tur);
+        border-radius: 10px;
+        padding: 12px 16px;
+        line-height: 1.6;
+      }
+      .facts li {
+        margin: 7px 0 7px 20px;
+        font-size: 13.5px;
+        line-height: 1.6;
+      }
+      footer {
+        color: var(--mu);
+        font-size: 12px;
+        text-align: center;
+        padding: 16px 0 30px;
+        border-top: 1px solid var(--brd);
+        margin-top: 8px;
+      }
+      footer a {
+        color: var(--blu);
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--brd);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--mu);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="hdr-top">
+          <div>
+            <div class="hdr-eyebrow">
+              FIFA · ABD · Kanada · Meksika · 48 Takım · 104 Maç
+            </div>
+            <h1>🏆 Dünya Kupası <span class="y">2026</span></h1>
+            <div class="hdr-sub">
+              11 Haziran – 19 Temmuz &nbsp;|&nbsp; 16 Şehir · 3 Ülke
+            </div>
+            <div class="hdr-pills">
+              <span class="pill" id="bDay"></span>
+              <span class="pill" id="bUpdate"></span>
+              <span class="pill">⏰ Tüm saatler TSİ</span>
+            </div>
+          </div>
+          <button id="themeToggle" class="theme-btn" title="Tema değiştir">
+            🌙
+          </button>
         </div>
+        <div class="headline-bar" id="headline"></div>
+      </header>
+
+      <section>
+        <h2>⭐ Favori Takımlarım <span class="hl"></span></h2>
+        <div class="picker">
+          <label>🇹🇷 Türkiye + seçtiklerin:</label>
+          <select id="sel0"></select
+          ><select id="sel1"></select>
+          <select id="sel2"></select
+          ><select id="sel3"></select>
+          <button id="clearBtn" title="Tüm seçimleri kaldır">Temizle</button>
+          <span class="muted">Seçimin bu tarayıcıda hatırlanır.</span>
+        </div>
+        <div class="favgrid" id="favgrid"></div>
+      </section>
+
+      <div class="twocol">
+        <section>
+          <h2>
+            📅 Bugünün Maçları <span class="muted" id="todayLabel"></span
+            ><span class="hl"></span>
+          </h2>
+          <div class="card" id="todayBox"></div>
+        </section>
+        <section>
+          <h2>🥅 Son Sonuçlar <span class="hl"></span></h2>
+          <div class="card" id="resultsBox"></div>
+          <h2 style="margin-top: 18px">
+            👑 Gol Krallığı <span class="hl"></span>
+          </h2>
+          <div class="card">
+            <table class="scorers" id="scorersTbl">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Oyuncu</th>
+                  <th>Takım</th>
+                  <th style="text-align: center">Gol</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div class="muted" id="scorersNote" style="margin-top: 8px"></div>
+          </div>
+        </section>
       </div>
-      <button id="themeToggle" class="theme-btn" title="Tema değiştir">🌙</button>
+
+      <section>
+        <h2>📊 Gruplar ve Puan Durumu <span class="hl"></span></h2>
+        <div class="groups" id="groupsBox"></div>
+        <div class="legend">
+          <span><span class="dotg">▌</span> İlk 2: Son 32'ye direkt</span>
+          <span
+            ><span class="dota">▌</span> 3.lük: en iyi 8 üçüncü turu geçer</span
+          >
+          <span>🔶 Turuncu: favori takımlar</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>🌳 Final Yolu — Eleme Ağacı <span class="hl"></span></h2>
+        <div class="bracketwrap card">
+          <div class="bracket" id="bracketBox"></div>
+        </div>
+        <div class="turpath" id="turPath"></div>
+      </section>
+
+      <section>
+        <h2>💡 Biliyor muydunuz? <span class="hl"></span></h2>
+        <div class="card"><ul class="facts" id="factsBox"></ul></div>
+      </section>
+
+      <footer>
+        Kaynaklar:
+        <a
+          href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+          >FIFA.com</a
+        >
+        ·
+        <a href="https://www.espn.com/soccer/scoreboard/_/league/fifa.world"
+          >ESPN</a
+        >
+        ·
+        <a href="https://www.skysports.com/football/news/11095/13481245/"
+          >Sky Sports</a
+        >
+        &nbsp;|&nbsp; <span id="footUpdate"></span> &nbsp;|&nbsp; 2 saatte bir
+        güncellenir.
+      </footer>
     </div>
-    <div class="headline-bar" id="headline"></div>
-  </header>
 
-  <section>
-    <h2>⭐ Favori Takımlarım <span class="hl"></span></h2>
-    <div class="picker">
-      <label>🇹🇷 Türkiye + seçtiklerin:</label>
-      <select id="sel0"></select><select id="sel1"></select>
-      <select id="sel2"></select><select id="sel3"></select>
-      <button id="clearBtn" title="Tüm seçimleri kaldır">Temizle</button>
-      <span class="muted">Seçimin bu tarayıcıda hatırlanır.</span>
-    </div>
-    <div class="favgrid" id="favgrid"></div>
-  </section>
+    <script>
+      /* Tema yönetimi */
+      const THEME_KEY = "dk2026_theme";
+      const html = document.documentElement;
+      const tBtn = document.getElementById("themeToggle");
+      function applyTheme(t) {
+        html.setAttribute("data-theme", t);
+        tBtn.textContent = t === "dark" ? "🌙" : "☀️";
+        try {
+          localStorage.setItem(THEME_KEY, t);
+        } catch (e) {}
+      }
+      applyTheme(localStorage.getItem(THEME_KEY) || "dark");
+      tBtn.onclick = () =>
+        applyTheme(
+          html.getAttribute("data-theme") === "dark" ? "light" : "dark",
+        );
+    </script>
+    <script>
+      /* Önbellek (cache) atlatma: data.js her açılışta benzersiz adresle taze indirilir. */
+      document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
+    </script>
+    <script>
+      const D = window.WC_DATA;
+      const $ = (id) => document.getElementById(id);
 
-  <div class="twocol">
-    <section>
-      <h2>📅 Bugünün Maçları <span class="muted" id="todayLabel"></span><span class="hl"></span></h2>
-      <div class="card" id="todayBox"></div>
-    </section>
-    <section>
-      <h2>🥅 Son Sonuçlar <span class="hl"></span></h2>
-      <div class="card" id="resultsBox"></div>
-      <h2 style="margin-top:18px">👑 Gol Krallığı <span class="hl"></span></h2>
-      <div class="card">
-        <table class="scorers" id="scorersTbl">
-          <thead><tr><th>#</th><th>Oyuncu</th><th>Takım</th><th style="text-align:center">Gol</th></tr></thead>
-          <tbody></tbody>
-        </table>
-        <div class="muted" id="scorersNote" style="margin-top:8px"></div>
-      </div>
-    </section>
-  </div>
+      /* ---------- Takım kayıtları (gruplardan türetilir) ---------- */
+      const TEAMS = {}; // ad -> {flag, group}
+      Object.entries(D.groups).forEach(([g, rows]) =>
+        rows.forEach((r) => (TEAMS[r.takim] = { flag: r.flag, group: g })),
+      );
+      const tkm = (ad) => (TEAMS[ad] ? TEAMS[ad].flag + " " + ad : ad);
 
-  <section>
-    <h2>📊 Gruplar ve Puan Durumu <span class="hl"></span></h2>
-    <div class="groups" id="groupsBox"></div>
-    <div class="legend">
-      <span><span class="dotg">▌</span> İlk 2: Son 32'ye direkt</span>
-      <span><span class="dota">▌</span> 3.lük: en iyi 8 üçüncü turu geçer</span>
-      <span>🔶 Turuncu: favori takımlar</span>
-    </div>
-  </section>
+      /* ---------- Tarih yardımcıları (TSİ) ---------- */
+      const fmtTR = new Intl.DateTimeFormat("tr-TR", {
+        timeZone: "Europe/Istanbul",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+      const isoTR = (d) => {
+        const p = fmtTR.formatToParts(d),
+          o = {};
+        p.forEach((x) => (o[x.type] = x.value));
+        return `${o.year}-${o.month}-${o.day}`;
+      };
+      const todayIso = isoTR(new Date());
+      const tomorrowIso = isoTR(new Date(Date.now() + 864e5));
+      const gunAdi = (iso) => {
+        const [y, m, g] = iso.split("-").map(Number);
+        const aylar = [
+          "",
+          "Oca",
+          "Şub",
+          "Mar",
+          "Nis",
+          "May",
+          "Haz",
+          "Tem",
+          "Ağu",
+          "Eyl",
+          "Eki",
+          "Kas",
+          "Ara",
+        ];
+        const günler = [
+          "Pazar",
+          "Pazartesi",
+          "Salı",
+          "Çarşamba",
+          "Perşembe",
+          "Cuma",
+          "Cumartesi",
+        ];
+        const d = new Date(Date.UTC(y, m - 1, g));
+        return `${g} ${aylar[m]} ${günler[d.getUTCDay()]}`;
+      };
 
-  <section>
-    <h2>🌳 Final Yolu — Eleme Ağacı <span class="hl"></span></h2>
-    <div class="bracketwrap card">
-      <div class="bracket" id="bracketBox"></div>
-    </div>
-    <div class="turpath" id="turPath"></div>
-  </section>
+      const start = new Date("2026-06-11T00:00:00+03:00");
+      const day = Math.max(1, Math.floor((Date.now() - start) / 864e5) + 1);
+      $("bDay").textContent = "📆 Turnuvanın " + day + ". günü";
+      $("bUpdate").textContent = "🔄 Son güncelleme: " + D.lastUpdate;
+      $("footUpdate").textContent = "Son güncelleme: " + D.lastUpdate;
+      $("headline").textContent = D.headline;
 
-  <section>
-    <h2>💡 Biliyor muydunuz? <span class="hl"></span></h2>
-    <div class="card"><ul class="facts" id="factsBox"></ul></div>
-  </section>
+      /* ---------- Favori seçimi (Türkiye sabit + 4 seçilebilir) ---------- */
+      const KEY = "dk2026_favoriler";
+      let secim = [];
+      try {
+        secim = JSON.parse(localStorage.getItem(KEY)) || [];
+      } catch (e) {}
+      secim = secim.filter((t) => TEAMS[t] && t !== "Türkiye").slice(0, 4);
 
-  <footer>
-    Kaynaklar: <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026">FIFA.com</a> ·
-    <a href="https://www.espn.com/soccer/scoreboard/_/league/fifa.world">ESPN</a> ·
-    <a href="https://www.skysports.com/football/news/11095/13481245/">Sky Sports</a>
-    &nbsp;|&nbsp; <span id="footUpdate"></span> &nbsp;|&nbsp; 2 saatte bir güncellenir.
-  </footer>
-</div>
+      const havuz = Object.keys(TEAMS)
+        .filter((t) => t !== "Türkiye")
+        .sort((a, b) => a.localeCompare(b, "tr"));
 
-<script>
-/* Tema yönetimi */
-const THEME_KEY = 'dk2026_theme';
-const html = document.documentElement;
-const tBtn = document.getElementById('themeToggle');
-function applyTheme(t) {
-  html.setAttribute('data-theme', t);
-  tBtn.textContent = t === 'dark' ? '🌙' : '☀️';
-  try { localStorage.setItem(THEME_KEY, t); } catch(e) {}
-}
-applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
-tBtn.onclick = () => applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-</script>
-<script>
-/* Önbellek (cache) atlatma: data.js her açılışta benzersiz adresle taze indirilir. */
-document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
-</script>
-<script>
-const D = window.WC_DATA;
-const $ = id => document.getElementById(id);
+      function pickerKur() {
+        for (let i = 0; i < 4; i++) {
+          const s = $("sel" + i);
+          const digerleri = secim.filter((_, j) => j !== i);
+          s.innerHTML =
+            `<option value="">— takım seç —</option>` +
+            havuz
+              .filter((t) => !digerleri.includes(t))
+              .map(
+                (t) =>
+                  `<option value="${t}" ${secim[i] === t ? "selected" : ""}>${TEAMS[t].flag} ${t}</option>`,
+              )
+              .join("");
+          s.onchange = () => {
+            secim[i] = s.value || undefined;
+            secim = secim.filter(Boolean);
+            try {
+              localStorage.setItem(KEY, JSON.stringify(secim));
+            } catch (e) {}
+            pickerKur();
+            favorileriCiz();
+            gruplariCiz();
+          };
+        }
+      }
+      $("clearBtn").onclick = () => {
+        secim = [];
+        try {
+          localStorage.setItem(KEY, "[]");
+        } catch (e) {}
+        pickerKur();
+        favorileriCiz();
+        gruplariCiz();
+      };
 
-/* ---------- Takım kayıtları (gruplardan türetilir) ---------- */
-const TEAMS = {};            // ad -> {flag, group}
-Object.entries(D.groups).forEach(([g, rows]) =>
-  rows.forEach(r => TEAMS[r.takim] = { flag: r.flag, group: g }));
-const tkm = ad => TEAMS[ad] ? TEAMS[ad].flag + " " + ad : ad;
-
-/* ---------- Tarih yardımcıları (TSİ) ---------- */
-const fmtTR = new Intl.DateTimeFormat("tr-TR", { timeZone: "Europe/Istanbul",
-  year: "numeric", month: "2-digit", day: "2-digit" });
-const isoTR = d => { const p = fmtTR.formatToParts(d), o = {};
-  p.forEach(x => o[x.type] = x.value); return `${o.year}-${o.month}-${o.day}`; };
-const todayIso = isoTR(new Date());
-const tomorrowIso = isoTR(new Date(Date.now() + 864e5));
-const gunAdi = iso => { const [y,m,g] = iso.split("-").map(Number);
-  const aylar = ["","Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
-  const günler = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
-  const d = new Date(Date.UTC(y, m-1, g));
-  return `${g} ${aylar[m]} ${günler[d.getUTCDay()]}`; };
-
-const start = new Date("2026-06-11T00:00:00+03:00");
-const day = Math.max(1, Math.floor((Date.now() - start) / 864e5) + 1);
-$("bDay").textContent = "📆 Turnuvanın " + day + ". günü";
-$("bUpdate").textContent = "🔄 Son güncelleme: " + D.lastUpdate;
-$("footUpdate").textContent = "Son güncelleme: " + D.lastUpdate;
-$("headline").textContent = D.headline;
-
-/* ---------- Favori seçimi (Türkiye sabit + 4 seçilebilir) ---------- */
-const KEY = "dk2026_favoriler";
-let secim = [];
-try { secim = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
-secim = secim.filter(t => TEAMS[t] && t !== "Türkiye").slice(0, 4);
-
-const havuz = Object.keys(TEAMS).filter(t => t !== "Türkiye")
-  .sort((a, b) => a.localeCompare(b, "tr"));
-
-function pickerKur() {
-  for (let i = 0; i < 4; i++) {
-    const s = $("sel" + i);
-    const digerleri = secim.filter((_, j) => j !== i);
-    s.innerHTML = `<option value="">— takım seç —</option>` +
-      havuz.filter(t => !digerleri.includes(t))
-        .map(t => `<option value="${t}" ${secim[i] === t ? "selected" : ""}>${TEAMS[t].flag} ${t}</option>`).join("");
-    s.onchange = () => {
-      secim[i] = s.value || undefined;
-      secim = secim.filter(Boolean);
-      try { localStorage.setItem(KEY, JSON.stringify(secim)); } catch (e) {}
-      pickerKur(); favorileriCiz(); gruplariCiz();
-    };
-  }
-}
-$("clearBtn").onclick = () => {
-  secim = [];
-  try { localStorage.setItem(KEY, "[]"); } catch (e) {}
-  pickerKur(); favorileriCiz(); gruplariCiz();
-};
-
-/* ---------- Favori kartları (otomatik üretilir) ---------- */
-function takimKarti(ad) {
-  const t = TEAMS[ad], g = t.group;
-  const rows = D.groups[g];
-  const idx = rows.findIndex(r => r.takim === ad);
-  const me = rows[idx];
-  const rakipler = rows.filter(r => r.takim !== ad).map(r => r.takim).join(", ");
-  const maclar = D.fixtures.filter(f => f.ev === ad || f.dep === ad);
-  const sonraki = maclar.find(f => !f.skor);
-  const durum = me.o === 0
-    ? "Henüz maça çıkmadı"
-    : `${g} Grubu'nda ${idx + 1}. sırada — ${me.p} puan (${me.g}G ${me.b}B ${me.m}M, averaj ${me.a - me.y > 0 ? "+" : ""}${me.a - me.y})`;
-  const sonrakiTxt = sonraki
-    ? `${(sonraki.ev === ad ? sonraki.dep : sonraki.ev)} — ${gunAdi(sonraki.iso)}, ${sonraki.saat} TSİ (${sonraki.yer})`
-    : "Planlanmış maçı yok";
-  return `
+      /* ---------- Favori kartları (otomatik üretilir) ---------- */
+      function takimKarti(ad) {
+        const t = TEAMS[ad],
+          g = t.group;
+        const rows = D.groups[g];
+        const idx = rows.findIndex((r) => r.takim === ad);
+        const me = rows[idx];
+        const rakipler = rows
+          .filter((r) => r.takim !== ad)
+          .map((r) => r.takim)
+          .join(", ");
+        const maclar = D.fixtures.filter((f) => f.ev === ad || f.dep === ad);
+        const sonraki = maclar.find((f) => !f.skor);
+        const durum =
+          me.o === 0
+            ? "Henüz maça çıkmadı"
+            : `${g} Grubu'nda ${idx + 1}. sırada — ${me.p} puan (${me.g}G ${me.b}B ${me.m}M, averaj ${me.a - me.y > 0 ? "+" : ""}${me.a - me.y})`;
+        const sonrakiTxt = sonraki
+          ? `${sonraki.ev === ad ? sonraki.dep : sonraki.ev} — ${gunAdi(sonraki.iso)}, ${sonraki.saat} TSİ (${sonraki.yer})`
+          : "Planlanmış maçı yok";
+        return `
   <div class="fav ${ad === "Türkiye" ? "tur" : ""}">
     <div class="head"><span class="flag">${t.flag}</span> ${ad}
       <span class="grp">${g} Grubu</span></div>
     <div class="muted" style="margin-top:4px">Rakipler: ${rakipler}</div>
     <div class="status">${durum}</div>
     <div class="next">Sıradaki maç: <b>${sonrakiTxt}</b></div>
-    <table>${maclar.map(f => {
-      const rakip = f.ev === ad ? f.dep : f.ev;
-      const evMi = f.ev === ad ? "" : " (D)";
-      return `<tr><td>${tkm(rakip)}${evMi}</td><td>${gunAdi(f.iso)} ${f.saat}</td>
+    <table>${maclar
+      .map((f) => {
+        const rakip = f.ev === ad ? f.dep : f.ev;
+        const evMi = f.ev === ad ? "" : " (D)";
+        return `<tr><td>${tkm(rakip)}${evMi}</td><td>${gunAdi(f.iso)} ${f.saat}</td>
         <td style="text-align:right;${f.skor ? "color:var(--grn);font-weight:700" : "color:var(--mu)"}">${f.skor ?? f.yer}</td></tr>`;
-    }).join("")}</table>
+      })
+      .join("")}</table>
     ${D.teamNotes[ad] ? `<div class="note">${D.teamNotes[ad]}</div>` : ""}
   </div>`;
-}
-function favorileriCiz() {
-  const liste = ["Türkiye", ...secim];
-  $("favgrid").innerHTML = liste.map(takimKarti).join("") +
-    (secim.length < 4 ? `<div class="fav" style="display:flex;align-items:center;justify-content:center">
-      <div class="favhint" style="text-align:center">⚙ Yukarıdaki kutulardan<br>en fazla ${4 - secim.length} takım daha ekleyebilirsin</div></div>` : "");
-}
+      }
+      function favorileriCiz() {
+        const liste = ["Türkiye", ...secim];
+        $("favgrid").innerHTML =
+          liste.map(takimKarti).join("") +
+          (secim.length < 4
+            ? `<div class="fav" style="display:flex;align-items:center;justify-content:center">
+      <div class="favhint" style="text-align:center">⚙ Yukarıdaki kutulardan<br>en fazla ${4 - secim.length} takım daha ekleyebilirsin</div></div>`
+            : "");
+      }
 
-/* ---------- Bugünün maçları (fikstürden türetilir) ---------- */
-function favMi(f) { const L = ["Türkiye", ...secim]; return L.includes(f.ev) || L.includes(f.dep); }
-function macSatiri(f, zaman) {
-  return `<div class="matchrow ${favMi(f) ? "favmatch" : ""}">
+      /* ---------- Bugünün maçları (fikstürden türetilir) ---------- */
+      function favMi(f) {
+        const L = ["Türkiye", ...secim];
+        return L.includes(f.ev) || L.includes(f.dep);
+      }
+      function macSatiri(f, zaman) {
+        return `<div class="matchrow ${favMi(f) ? "favmatch" : ""}">
     <span class="time">${zaman}</span><span class="grp">${f.grup.length === 1 ? f.grup + " Grubu" : f.grup}</span>
     <span class="teams">${tkm(f.ev)} ${f.skor ? `<span class="score">${f.skor}</span>` : "—"} ${tkm(f.dep)}</span>
     <span class="venue">📍 ${f.yer}</span>
     ${favMi(f) ? `<span class="mnote">⭐ Favori takım maçı</span>` : ""}
     ${f.skor && f.not ? `<span class="resnote">${f.not}</span>` : ""}
   </div>`;
-}
-const bugun = D.fixtures.filter(f => f.iso === todayIso);
-const gece = D.fixtures.filter(f => f.iso === tomorrowIso && f.saat <= "08:00");
-$("todayLabel").textContent = "· " + gunAdi(todayIso);
-$("todayBox").innerHTML =
-  (bugun.length ? bugun.map(f => macSatiri(f, f.saat)).join("") : `<div class="muted">Bugün maç yok.</div>`) +
-  (gece.length ? `<div class="muted" style="margin:10px 0 6px">🌙 Yarın sabaha karşı:</div>` +
-    gece.map(f => macSatiri(f, f.saat)).join("") : "");
+      }
+      const bugun = D.fixtures.filter((f) => f.iso === todayIso);
+      const gece = D.fixtures.filter(
+        (f) => f.iso === tomorrowIso && f.saat <= "08:00",
+      );
+      $("todayLabel").textContent = "· " + gunAdi(todayIso);
+      $("todayBox").innerHTML =
+        (bugun.length
+          ? bugun.map((f) => macSatiri(f, f.saat)).join("")
+          : `<div class="muted">Bugün maç yok.</div>`) +
+        (gece.length
+          ? `<div class="muted" style="margin:10px 0 6px">🌙 Yarın sabaha karşı:</div>` +
+            gece.map((f) => macSatiri(f, f.saat)).join("")
+          : "");
 
-/* ---------- Son sonuçlar ---------- */
-const biten = D.fixtures.filter(f => f.skor)
-  .sort((a, b) => (b.iso + b.saat).localeCompare(a.iso + a.saat)).slice(0, 6);
-$("resultsBox").innerHTML = biten.length
-  ? biten.map(f => `
+      /* ---------- Son sonuçlar ---------- */
+      const biten = D.fixtures
+        .filter((f) => f.skor)
+        .sort((a, b) => (b.iso + b.saat).localeCompare(a.iso + a.saat))
+        .slice(0, 6);
+      $("resultsBox").innerHTML = biten.length
+        ? biten
+            .map(
+              (f) => `
     <div class="matchrow ${favMi(f) ? "favmatch" : ""}">
       <span class="time">${gunAdi(f.iso).split(" ").slice(0, 2).join(" ")}</span>
       <span class="grp">${f.grup.length === 1 ? f.grup + " Grubu" : f.grup}</span>
       <span class="teams">${tkm(f.ev)} <span class="score">${f.skor}</span> ${tkm(f.dep)}</span>
       ${f.not ? `<span class="resnote">${f.not}</span>` : ""}
-    </div>`).join("")
-  : `<div class="muted">Henüz oynanmış maç yok.</div>`;
+    </div>`,
+            )
+            .join("")
+        : `<div class="muted">Henüz oynanmış maç yok.</div>`;
 
-/* ---------- Gol krallığı ---------- */
-document.querySelector("#scorersTbl tbody").innerHTML = D.topScorers.map((s, i) => `
+      /* ---------- Gol krallığı ---------- */
+      document.querySelector("#scorersTbl tbody").innerHTML = D.topScorers
+        .map(
+          (s, i) => `
   <tr><td>${i === 0 ? '<span class="crown">👑</span>' : s.sira}</td>
-  <td>${s.oyuncu}</td><td>${s.flag} ${s.takim}</td><td class="g">${s.gol}</td></tr>`).join("");
-$("scorersNote").textContent = D.topScorersNote || "";
+  <td>${s.oyuncu}</td><td>${s.flag} ${s.takim}</td><td class="g">${s.gol}</td></tr>`,
+        )
+        .join("");
+      $("scorersNote").textContent = D.topScorersNote || "";
 
-/* ---------- Gruplar ---------- */
-function gruplariCiz() {
-  const favs = ["Türkiye", ...secim];
-  $("groupsBox").innerHTML = Object.entries(D.groups).map(([g, rows]) => `
+      /* ---------- Gruplar ---------- */
+      function gruplariCiz() {
+        const favs = ["Türkiye", ...secim];
+        $("groupsBox").innerHTML = Object.entries(D.groups)
+          .map(
+            ([g, rows]) => `
     <div class="gcard">
       <div class="gtitle"><span>${g} Grubu</span>
-        <span class="muted">${rows.some(r => favs.includes(r.takim)) ? "⭐" : ""}</span></div>
+        <span class="muted">${rows.some((r) => favs.includes(r.takim)) ? "⭐" : ""}</span></div>
       <table>
         <tr><th style="text-align:left;padding-left:10px">Takım</th>
             <th>O</th><th>G</th><th>B</th><th>M</th><th>A</th><th>Y</th><th>Av</th><th>P</th></tr>
-        ${rows.map((r, i) => `
+        ${rows
+          .map(
+            (r, i) => `
           <tr class="${i < 2 ? "q1" : i === 2 ? "q3" : "q4"} ${favs.includes(r.takim) ? "favrow" : ""}">
             <td class="t">${r.flag} ${r.takim}${r.ev ? ' <span class="muted">(ev)</span>' : ""}</td>
             <td>${r.o}</td><td>${r.g}</td><td>${r.b}</td><td>${r.m}</td>
             <td>${r.a}</td><td>${r.y}</td><td>${r.a - r.y > 0 ? "+" : ""}${r.a - r.y}</td>
-            <td class="pts">${r.p}</td></tr>`).join("")}
+            <td class="pts">${r.p}</td></tr>`,
+          )
+          .join("")}
       </table>
-    </div>`).join("");
-}
+    </div>`,
+          )
+          .join("");
+      }
 
-/* ---------- Eleme ağacı ---------- */
-const mk = (m, cls = "") => `
+      /* ---------- Eleme ağacı ---------- */
+      const mk = (m, cls = "") => `
   <div class="bm ${m.tur ? "tur" : ""} ${cls}">
     <div class="mid"><span>Maç ${m.id}</span><span>${m.tarih} · ${m.yer}</span></div>
     <div class="tm"><span>${m.ev}</span>${m.skor ? `<b>${m.skor.split("-")[0]}</b>` : ""}</div>
     <div class="tm"><span>${m.dep}</span>${m.skor ? `<b>${m.skor.split("-")[1]}</b>` : ""}</div>
   </div>`;
-$("bracketBox").innerHTML = `
-  <div class="round"><h3>SON 32 (28 Haz – 4 Tem)</h3>${D.bracket.r32.map(m => mk(m)).join("")}</div>
-  <div class="round"><h3>SON 16 (4 – 8 Tem)</h3>${D.bracket.r16.map(m => mk(m)).join("")}</div>
-  <div class="round"><h3>ÇEYREK FİNAL (9 – 12 Tem)</h3>${D.bracket.qf.map(m => mk(m)).join("")}</div>
-  <div class="round"><h3>YARI FİNAL (14 – 15 Tem)</h3>${D.bracket.sf.map(m => mk(m)).join("")}</div>
+      $("bracketBox").innerHTML = `
+  <div class="round"><h3>SON 32 (28 Haz – 4 Tem)</h3>${D.bracket.r32.map((m) => mk(m)).join("")}</div>
+  <div class="round"><h3>SON 16 (4 – 8 Tem)</h3>${D.bracket.r16.map((m) => mk(m)).join("")}</div>
+  <div class="round"><h3>ÇEYREK FİNAL (9 – 12 Tem)</h3>${D.bracket.qf.map((m) => mk(m)).join("")}</div>
+  <div class="round"><h3>YARI FİNAL (14 – 15 Tem)</h3>${D.bracket.sf.map((m) => mk(m)).join("")}</div>
   <div class="round"><h3>FİNAL 🏆</h3>${mk(D.bracket.final, "final")}
     <div class="muted" style="text-align:center;font-size:11px;margin-top:6px">3.lük: 18 Tem, Miami</div></div>`;
-$("turPath").innerHTML = "🇹🇷 <b>Türkiye'nin olası yolu:</b> " + D.bracket.note;
+      $("turPath").innerHTML =
+        "🇹🇷 <b>Türkiye'nin olası yolu:</b> " + D.bracket.note;
 
-/* ---------- Bilgiler ---------- */
-$("factsBox").innerHTML = D.facts.map(f => `<li>${f}</li>`).join("");
+      /* ---------- Bilgiler ---------- */
+      $("factsBox").innerHTML = D.facts.map((f) => `<li>${f}</li>`).join("");
 
-/* ---------- Başlat ---------- */
-pickerKur(); favorileriCiz(); gruplariCiz();
-</script>
-</body>
+      /* ---------- Başlat ---------- */
+      pickerKur();
+      favorileriCiz();
+      gruplariCiz();
+    </script>
+  </body>
 </html>
