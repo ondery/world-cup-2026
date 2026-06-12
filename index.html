@@ -58,21 +58,22 @@
           color 0.3s;
         min-height: 100vh;
       }
-      body::before {
+      #bg-fixed {
+        position: fixed;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1400&q=20") top/cover no-repeat;
+        z-index: -1;
+        pointer-events: none;
+        will-change: transform;
+      }
+      [data-t="dark"] body::before {
         content: "";
         position: fixed;
         inset: 0;
         pointer-events: none;
         z-index: 0;
-        background-image: url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1400&q=20");
-        background-position: top;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-      [data-t="dark"] body::before {
-        background-image:
-          linear-gradient(0deg, rgba(2, 14, 7, 0.75), rgba(2, 14, 7, 0.75)),
+        background:
+          rgba(2, 14, 7, 0.75),
           radial-gradient(
             ellipse 70% 50% at 10% 0%,
             rgba(0, 80, 30, 0.22) 0%,
@@ -82,25 +83,7 @@
             ellipse 50% 35% at 90% 100%,
             rgba(0, 50, 20, 0.18) 0%,
             transparent 55%
-          ),
-          url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1400&q=20");
-        background-position: top, center, center, top;
-        background-size: cover, cover, cover, cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed, fixed, fixed, fixed;
-      }
-      [data-t="light"] body::before {
-        background-image:
-          linear-gradient(
-            0deg,
-            rgba(242, 247, 243, 0.5),
-            rgba(242, 247, 243, 0.5)
-          ),
-          url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1400&q=20");
-        background-position: top, top;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed, fixed;
+          );
       }
       .wrap {
         max-width: 1320px;
@@ -1120,6 +1103,7 @@
     </style>
   </head>
   <body>
+    <div id="bg-fixed"></div>
     <div class="wrap">
       <header>
         <div class="hdr-img"></div>
