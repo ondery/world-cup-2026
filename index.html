@@ -1,134 +1,170 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dünya Kupası 2026 — Canlı Dashboard</title>
+<title>FIFA Dünya Kupası 2026</title>
 <style>
-  :root{
-    --bg:#0d1321; --panel:#161d2f; --panel2:#1c2540; --line:#2a3554;
-    --text:#e8ecf5; --muted:#93a0bd; --accent:#ffd166; --green:#3ddc84;
-    --red:#e63946; --tur:#ff5c39; --blue:#4cc9f0;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--text);font-family:"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45}
-  .wrap{max-width:1280px;margin:0 auto;padding:18px}
+[data-theme=dark]{
+  --bg:#0c0d15;--s1:#161721;--s2:#1e2030;--brd:#27293c;
+  --txt:#ece9df;--mu:#6a6a8c;--acc:#e8a020;--acc2:#ffd166;
+  --grn:#22c55e;--red:#ef4444;--tur:#ff5c30;--blu:#60a5fa;
+  --hdr:linear-gradient(135deg,#0d1a35 0%,#1c1040 55%,#2e0f1f 100%);
+  --sh:0 4px 24px rgba(0,0,0,.6);--sh2:0 2px 10px rgba(0,0,0,.3)
+}
+[data-theme=light]{
+  --bg:#f4f2ec;--s1:#fff;--s2:#edebe5;--brd:#d8d4c9;
+  --txt:#18161e;--mu:#6b6880;--acc:#b37010;--acc2:#d4880e;
+  --grn:#15803d;--red:#b91c1c;--tur:#c94213;--blu:#1d4ed8;
+  --hdr:linear-gradient(135deg,#1a3a6a 0%,#1e1060 55%,#5a142a 100%);
+  --sh:0 4px 24px rgba(0,0,0,.10);--sh2:0 2px 10px rgba(0,0,0,.06)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.5;transition:background .25s,color .25s}
+.wrap{max-width:1300px;margin:0 auto;padding:18px 14px}
 
-  header{background:linear-gradient(135deg,#13294b 0%,#1d3a6e 55%,#7a1f2b 100%);
-    border-radius:16px;padding:26px 28px;margin-bottom:18px;position:relative;overflow:hidden}
-  header::after{content:"⚽";position:absolute;right:18px;top:-14px;font-size:120px;opacity:.08}
-  header h1{font-size:26px;letter-spacing:.5px}
-  header .sub{color:#cdd8ee;margin-top:6px;font-size:14px}
-  .badges{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
-  .badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
-    padding:4px 12px;border-radius:20px;font-size:12.5px}
-  .headline{margin-top:14px;background:rgba(0,0,0,.28);border-left:4px solid var(--accent);
-    padding:10px 14px;border-radius:8px;font-size:14.5px}
+/* HEADER */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+header{
+  background:var(--hdr);border-radius:20px;padding:26px 28px;margin-bottom:22px;
+  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--sh);animation:fadeUp .45s ease both
+}
+header::before{content:"⚽";position:absolute;right:-8px;top:-22px;font-size:155px;opacity:.07;transform:rotate(-12deg);pointer-events:none}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.hdr-eyebrow{font-size:10.5px;letter-spacing:2.8px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8px;font-weight:700}
+header h1{font:700 27px/1.1 Georgia,serif;color:#fff;letter-spacing:-.3px}
+header h1 .y{color:var(--acc2)}
+.hdr-sub{color:rgba(255,255,255,.55);font-size:13px;margin-top:5px}
+.hdr-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:4px 12px;border-radius:100px;font-size:11.5px;color:rgba(255,255,255,.82);white-space:nowrap}
+.headline-bar{margin-top:14px;background:rgba(0,0,0,.22);border-left:3px solid var(--acc2);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13.5px;color:rgba(255,255,255,.88);line-height:1.6}
+.theme-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:50%;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .2s;flex-shrink:0;user-select:none}
+.theme-btn:hover{background:rgba(255,255,255,.22);transform:scale(1.08)}
 
-  section{margin-bottom:22px}
-  h2{font-size:17px;margin-bottom:10px;display:flex;align-items:center;gap:8px;
-     border-left:4px solid var(--accent);padding-left:10px;flex-wrap:wrap}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
-  .muted{color:var(--muted);font-size:12.5px}
+/* SECTIONS */
+section{margin-bottom:26px}
+h2{font:600 15.5px/1 Georgia,serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:var(--txt)}
+h2 .hl{flex:1;height:1px;background:var(--brd)}
+.muted{color:var(--mu);font-size:12.5px}
+.card{background:var(--s1);border:1px solid var(--brd);border-radius:14px;padding:16px;box-shadow:var(--sh2);transition:background .25s,border-color .25s}
 
-  /* Favori seçimi */
-  .picker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--panel);
-    border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:12px}
-  .picker label{font-size:13px;color:var(--muted)}
-  .picker select{background:var(--panel2);color:var(--text);border:1px solid var(--line);
-    border-radius:8px;padding:6px 8px;font-size:13px;max-width:170px}
-  .picker button{background:transparent;color:var(--muted);border:1px solid var(--line);
-    border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer}
-  .picker button:hover{color:var(--text);border-color:var(--muted)}
+/* PICKER */
+.picker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--s1);border:1px solid var(--brd);border-radius:14px;padding:12px 16px;margin-bottom:14px;box-shadow:var(--sh2)}
+.picker label{font-size:13px;color:var(--mu);font-weight:500;white-space:nowrap}
+.picker select{background:var(--s2);color:var(--txt);border:1px solid var(--brd);border-radius:8px;padding:6px 9px;font-size:13px;max-width:172px;cursor:pointer;transition:border-color .2s}
+.picker select:focus{outline:none;border-color:var(--acc)}
+.picker button{background:transparent;color:var(--mu);border:1px solid var(--brd);border-radius:8px;padding:6px 12px;font-size:12.5px;cursor:pointer;transition:all .2s}
+.picker button:hover{color:var(--txt);border-color:var(--mu)}
 
-  .favgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px}
-  .fav{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;
-       border-top:3px solid var(--blue)}
-  .fav.tur{border-top-color:var(--tur);background:linear-gradient(180deg,#2a1620 0%,var(--panel) 40%)}
-  .fav .head{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700}
-  .fav .grp{margin-left:auto;font-size:11.5px;background:var(--panel2);border:1px solid var(--line);
-            padding:2px 8px;border-radius:10px;color:var(--muted)}
-  .fav .status{margin-top:8px;font-size:13px;color:var(--accent)}
-  .fav .next{margin-top:8px;font-size:13px}
-  .fav .next b{color:var(--green)}
-  .fav table{width:100%;margin-top:10px;border-collapse:collapse;font-size:12.5px}
-  .fav td{padding:3px 2px;border-top:1px dashed var(--line);color:var(--muted)}
-  .fav td:first-child{color:var(--text)}
-  .fav .note{margin-top:8px;font-size:11.5px;color:var(--muted);font-style:italic}
-  .favhint{font-size:12.5px;color:var(--muted);margin-top:8px}
+/* FAV CARDS */
+.favgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.fav{background:var(--s1);border:1px solid var(--brd);border-radius:14px;padding:16px;border-top:3px solid var(--blu);box-shadow:var(--sh2);transition:transform .2s,box-shadow .2s,border-color .25s,background .25s}
+.fav:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.fav.tur{border-top-color:var(--tur)}
+[data-theme=dark] .fav.tur{background:linear-gradient(160deg,rgba(255,92,48,.09) 0%,var(--s1) 38%)}
+[data-theme=light] .fav.tur{background:linear-gradient(160deg,rgba(201,66,19,.06) 0%,var(--s1) 38%)}
+.fav .head{display:flex;align-items:center;gap:8px;font:700 16px/1.2 Georgia,serif}
+.fav .head .flag{font-size:24px}
+.fav .grp{margin-left:auto;font-size:11px;background:var(--s2);border:1px solid var(--brd);padding:2px 9px;border-radius:20px;color:var(--mu)}
+.fav .status{margin-top:8px;font-size:12.5px;color:var(--acc)}
+.fav .next{margin-top:6px;font-size:13px}
+.fav .next b{color:var(--grn)}
+.fav table{width:100%;margin-top:10px;border-collapse:collapse;font-size:12px}
+.fav td{padding:4px 2px;border-top:1px solid var(--brd);color:var(--mu)}
+.fav td:first-child{color:var(--txt)}
+.fav .note{margin-top:8px;font-size:11.5px;color:var(--mu);font-style:italic;line-height:1.5}
+.favhint{font-size:12.5px;color:var(--mu)}
 
-  .matchrow{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;
-    background:var(--panel2);border:1px solid var(--line);margin-bottom:8px;flex-wrap:wrap}
-  .matchrow .time{font-weight:700;color:var(--accent);min-width:88px}
-  .matchrow .grp{font-size:11px;background:#0d1321;padding:2px 8px;border-radius:8px;color:var(--muted)}
-  .matchrow .teams{font-size:14.5px;font-weight:600}
-  .matchrow .score{font-weight:800;color:var(--green);font-size:15px}
-  .matchrow .venue{margin-left:auto;color:var(--muted);font-size:12px}
-  .matchrow .mnote{width:100%;font-size:12px;color:var(--accent)}
-  .matchrow.favmatch{border-color:var(--tur)}
-  .resnote{font-size:12px;color:var(--muted);width:100%}
+/* MATCH ROWS */
+.matchrow{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:10px;background:var(--s2);border:1px solid var(--brd);margin-bottom:8px;flex-wrap:wrap;transition:background .25s,border-color .25s}
+.matchrow.favmatch{border-color:var(--tur)}
+[data-theme=dark] .matchrow.favmatch{background:rgba(255,92,48,.08)}
+[data-theme=light] .matchrow.favmatch{background:rgba(201,66,19,.05)}
+.matchrow .time{font:700 13px/1 'Courier New',Consolas,monospace;color:var(--acc);min-width:82px}
+.matchrow .grp{font-size:10.5px;background:var(--s1);border:1px solid var(--brd);padding:2px 8px;border-radius:8px;color:var(--mu)}
+.matchrow .teams{font-size:14px;font-weight:600;flex:1}
+.matchrow .score{font:800 15px/1 'Courier New',Consolas,monospace;color:var(--grn)}
+.matchrow .venue{margin-left:auto;color:var(--mu);font-size:11.5px}
+.matchrow .mnote{width:100%;font-size:12px;color:var(--tur)}
+.resnote{font-size:11.5px;color:var(--mu);width:100%;padding-top:2px;line-height:1.5}
 
-  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media(max-width:900px){.twocol{grid-template-columns:1fr}}
+/* LAYOUT */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:860px){.twocol{grid-template-columns:1fr}}
 
-  .scorers{width:100%;border-collapse:collapse;font-size:14px}
-  .scorers th{font-size:12px;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
-  .scorers td{padding:7px 8px;border-bottom:1px solid var(--line)}
-  .scorers tr:last-child td{border-bottom:none}
-  .scorers .g{font-weight:800;color:var(--accent);text-align:center}
-  .crown{color:var(--accent)}
+/* SCORERS */
+.scorers{width:100%;border-collapse:collapse;font-size:13.5px}
+.scorers th{font-size:10.5px;color:var(--mu);text-align:left;padding:7px 10px;border-bottom:1px solid var(--brd);font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.scorers td{padding:9px 10px;border-bottom:1px solid var(--brd)}
+.scorers tr:last-child td{border-bottom:none}
+.scorers .g{font:700 16px/1 'Courier New',monospace;color:var(--acc);text-align:center}
+.crown{color:var(--acc)}
 
-  .groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
-  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .gcard .gtitle{background:var(--panel2);padding:8px 12px;font-weight:700;font-size:14px;
-    display:flex;justify-content:space-between}
-  .gcard table{width:100%;border-collapse:collapse;font-size:12.5px}
-  .gcard th{color:var(--muted);font-size:10.5px;padding:5px 4px;text-align:center;font-weight:600}
-  .gcard td{padding:5px 4px;text-align:center;border-top:1px solid #202944}
-  .gcard td.t{text-align:left;padding-left:10px;white-space:nowrap}
-  .gcard tr.q1 td:first-child{border-left:3px solid var(--green)}
-  .gcard tr.q3 td:first-child{border-left:3px solid var(--accent)}
-  .gcard tr.q4 td:first-child{border-left:3px solid transparent}
-  .gcard tr.favrow{background:rgba(255,92,57,.12)}
-  .gcard td.pts{font-weight:800;color:var(--accent)}
-  .legend{font-size:11.5px;color:var(--muted);margin-top:8px}
-  .dotg{color:var(--green)} .dota{color:var(--accent)}
+/* GROUPS */
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(282px,1fr));gap:14px}
+.gcard{background:var(--s1);border:1px solid var(--brd);border-radius:14px;overflow:hidden;box-shadow:var(--sh2);transition:transform .2s,background .25s,border-color .25s}
+.gcard:hover{transform:translateY(-1px)}
+.gcard .gtitle{background:var(--s2);padding:9px 14px;font:700 13px/1 Georgia,serif;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--brd)}
+.gcard table{width:100%;border-collapse:collapse;font-size:12px}
+.gcard th{color:var(--mu);font-size:10px;padding:6px 4px;text-align:center;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.gcard td{padding:6px 4px;text-align:center;border-top:1px solid var(--brd)}
+.gcard td.t{text-align:left;padding-left:12px;white-space:nowrap}
+.gcard tr.q1 td:first-child{border-left:3px solid var(--grn)}
+.gcard tr.q3 td:first-child{border-left:3px solid var(--acc)}
+.gcard tr.q4 td:first-child{border-left:3px solid transparent}
+.gcard tr.favrow{background:rgba(255,92,48,.08)}
+[data-theme=light] .gcard tr.favrow{background:rgba(201,66,19,.06)}
+.gcard td.pts{font:700 13px/1 'Courier New',monospace;color:var(--acc)}
+.legend{font-size:11.5px;color:var(--mu);margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}
+.dotg{color:var(--grn)}.dota{color:var(--acc)}
 
-  .bracketwrap{overflow-x:auto;padding-bottom:8px}
-  .bracket{display:flex;gap:18px;min-width:1150px}
-  .round{display:flex;flex-direction:column;justify-content:space-around;gap:8px;flex:1}
-  .round h3{font-size:12.5px;color:var(--muted);text-align:center;margin-bottom:2px}
-  .bm{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:7px 9px;font-size:12px}
-  .bm.tur{border-color:var(--tur);box-shadow:0 0 0 1px var(--tur)}
-  .bm .mid{color:var(--muted);font-size:10px;display:flex;justify-content:space-between;margin-bottom:3px}
-  .bm .tm{display:flex;justify-content:space-between;padding:1.5px 0}
-  .bm.final{border-color:var(--accent);background:linear-gradient(180deg,#2b2410,var(--panel2))}
-  .bm.final .mid{color:var(--accent)}
-  .turpath{margin-top:10px;font-size:13px;background:rgba(255,92,57,.1);
-    border:1px dashed var(--tur);border-radius:10px;padding:10px 14px}
-
-  .facts li{margin:6px 0 6px 18px;font-size:13.5px}
-  footer{color:var(--muted);font-size:11.5px;text-align:center;padding:14px 0 30px;border-top:1px solid var(--line)}
-  footer a{color:var(--blue);text-decoration:none}
+/* BRACKET */
+.bracketwrap{overflow-x:auto;padding-bottom:8px}
+.bracket{display:flex;gap:16px;min-width:1150px}
+.round{display:flex;flex-direction:column;justify-content:space-around;gap:8px;flex:1}
+.round h3{font-size:11px;color:var(--mu);text-align:center;margin-bottom:2px;letter-spacing:.8px;text-transform:uppercase}
+.bm{background:var(--s2);border:1px solid var(--brd);border-radius:10px;padding:8px 10px;font-size:11.5px;transition:border-color .25s}
+.bm.tur{border-color:var(--tur);box-shadow:0 0 0 1px var(--tur)}
+.bm .mid{color:var(--mu);font-size:10px;display:flex;justify-content:space-between;margin-bottom:4px}
+.bm .tm{display:flex;justify-content:space-between;padding:2px 0}
+.bm.final{border-color:var(--acc)}
+[data-theme=dark] .bm.final{background:linear-gradient(160deg,rgba(232,160,32,.1),var(--s2))}
+[data-theme=light] .bm.final{background:linear-gradient(160deg,rgba(179,112,16,.08),var(--s2))}
+.bm.final .mid{color:var(--acc)}
+.turpath{margin-top:12px;font-size:13px;background:var(--s2);border:1px dashed var(--tur);border-radius:10px;padding:12px 16px;line-height:1.6}
+.facts li{margin:7px 0 7px 20px;font-size:13.5px;line-height:1.6}
+footer{color:var(--mu);font-size:12px;text-align:center;padding:16px 0 30px;border-top:1px solid var(--brd);margin-top:8px}
+footer a{color:var(--blu);text-decoration:none}
+footer a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--brd);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--mu)}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <h1>🏆 FIFA Dünya Kupası 2026</h1>
-    <div class="sub">ABD · Kanada · Meksika &nbsp;|&nbsp; 11 Haziran – 19 Temmuz &nbsp;|&nbsp; 48 takım · 104 maç</div>
-    <div class="badges">
-      <span class="badge" id="bDay"></span>
-      <span class="badge" id="bUpdate"></span>
-      <span class="badge">⏰ Tüm saatler Türkiye saati (TSİ)</span>
+    <div class="hdr-top">
+      <div>
+        <div class="hdr-eyebrow">FIFA · ABD · Kanada · Meksika · 48 Takım · 104 Maç</div>
+        <h1>🏆 Dünya Kupası <span class="y">2026</span></h1>
+        <div class="hdr-sub">11 Haziran – 19 Temmuz &nbsp;|&nbsp; 16 Şehir · 3 Ülke</div>
+        <div class="hdr-pills">
+          <span class="pill" id="bDay"></span>
+          <span class="pill" id="bUpdate"></span>
+          <span class="pill">⏰ Tüm saatler TSİ</span>
+        </div>
+      </div>
+      <button id="themeToggle" class="theme-btn" title="Tema değiştir">🌙</button>
     </div>
-    <div class="headline" id="headline"></div>
+    <div class="headline-bar" id="headline"></div>
   </header>
 
-  <!-- FAVORİ TAKIMLAR -->
   <section>
-    <h2>⭐ Favori Takımlarım</h2>
+    <h2>⭐ Favori Takımlarım <span class="hl"></span></h2>
     <div class="picker">
       <label>🇹🇷 Türkiye + seçtiklerin:</label>
       <select id="sel0"></select><select id="sel1"></select>
@@ -141,36 +177,35 @@
 
   <div class="twocol">
     <section>
-      <h2>📅 Bugünün Maçları <span class="muted" id="todayLabel"></span></h2>
+      <h2>📅 Bugünün Maçları <span class="muted" id="todayLabel"></span><span class="hl"></span></h2>
       <div class="card" id="todayBox"></div>
     </section>
-
     <section>
-      <h2>🥅 Son Sonuçlar</h2>
+      <h2>🥅 Son Sonuçlar <span class="hl"></span></h2>
       <div class="card" id="resultsBox"></div>
-      <h2 style="margin-top:16px">👑 Gol Krallığı</h2>
+      <h2 style="margin-top:18px">👑 Gol Krallığı <span class="hl"></span></h2>
       <div class="card">
         <table class="scorers" id="scorersTbl">
           <thead><tr><th>#</th><th>Oyuncu</th><th>Takım</th><th style="text-align:center">Gol</th></tr></thead>
           <tbody></tbody>
         </table>
-        <div class="muted" id="scorersNote" style="margin-top:6px"></div>
+        <div class="muted" id="scorersNote" style="margin-top:8px"></div>
       </div>
     </section>
   </div>
 
   <section>
-    <h2>📊 Gruplar ve Puan Durumu</h2>
+    <h2>📊 Gruplar ve Puan Durumu <span class="hl"></span></h2>
     <div class="groups" id="groupsBox"></div>
     <div class="legend">
-      <span class="dotg">▌</span> İlk 2: Son 32'ye direkt &nbsp;&nbsp;
-      <span class="dota">▌</span> 3.lük: en iyi 8 üçüncü de turu geçer &nbsp;&nbsp;
-      🔶 Turuncu satır: favori takımların
+      <span><span class="dotg">▌</span> İlk 2: Son 32'ye direkt</span>
+      <span><span class="dota">▌</span> 3.lük: en iyi 8 üçüncü turu geçer</span>
+      <span>🔶 Turuncu: favori takımlar</span>
     </div>
   </section>
 
   <section>
-    <h2>🌳 Final Yolu — Eleme Ağacı</h2>
+    <h2>🌳 Final Yolu — Eleme Ağacı <span class="hl"></span></h2>
     <div class="bracketwrap card">
       <div class="bracket" id="bracketBox"></div>
     </div>
@@ -178,7 +213,7 @@
   </section>
 
   <section>
-    <h2>💡 Bunları Biliyor muydunuz?</h2>
+    <h2>💡 Biliyor muydunuz? <span class="hl"></span></h2>
     <div class="card"><ul class="facts" id="factsBox"></ul></div>
   </section>
 
@@ -186,10 +221,23 @@
     Kaynaklar: <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026">FIFA.com</a> ·
     <a href="https://www.espn.com/soccer/scoreboard/_/league/fifa.world">ESPN</a> ·
     <a href="https://www.skysports.com/football/news/11095/13481245/">Sky Sports</a>
-    &nbsp;|&nbsp; <span id="footUpdate"></span> &nbsp;|&nbsp; 2 saatte bir otomatik güncellenir.
+    &nbsp;|&nbsp; <span id="footUpdate"></span> &nbsp;|&nbsp; 2 saatte bir güncellenir.
   </footer>
 </div>
 
+<script>
+/* Tema yönetimi */
+const THEME_KEY = 'dk2026_theme';
+const html = document.documentElement;
+const tBtn = document.getElementById('themeToggle');
+function applyTheme(t) {
+  html.setAttribute('data-theme', t);
+  tBtn.textContent = t === 'dark' ? '🌙' : '☀️';
+  try { localStorage.setItem(THEME_KEY, t); } catch(e) {}
+}
+applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+tBtn.onclick = () => applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+</script>
 <script>
 /* Önbellek (cache) atlatma: data.js her açılışta benzersiz adresle taze indirilir. */
 document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
@@ -271,7 +319,7 @@ function takimKarti(ad) {
     : "Planlanmış maçı yok";
   return `
   <div class="fav ${ad === "Türkiye" ? "tur" : ""}">
-    <div class="head"><span style="font-size:22px">${t.flag}</span> ${ad}
+    <div class="head"><span class="flag">${t.flag}</span> ${ad}
       <span class="grp">${g} Grubu</span></div>
     <div class="muted" style="margin-top:4px">Rakipler: ${rakipler}</div>
     <div class="status">${durum}</div>
@@ -280,7 +328,7 @@ function takimKarti(ad) {
       const rakip = f.ev === ad ? f.dep : f.ev;
       const evMi = f.ev === ad ? "" : " (D)";
       return `<tr><td>${tkm(rakip)}${evMi}</td><td>${gunAdi(f.iso)} ${f.saat}</td>
-        <td style="text-align:right;${f.skor ? "color:var(--green);font-weight:700" : "color:var(--muted)"}">${f.skor ?? f.yer}</td></tr>`;
+        <td style="text-align:right;${f.skor ? "color:var(--grn);font-weight:700" : "color:var(--mu)"}">${f.skor ?? f.yer}</td></tr>`;
     }).join("")}</table>
     ${D.teamNotes[ad] ? `<div class="note">${D.teamNotes[ad]}</div>` : ""}
   </div>`;
@@ -336,7 +384,7 @@ function gruplariCiz() {
   $("groupsBox").innerHTML = Object.entries(D.groups).map(([g, rows]) => `
     <div class="gcard">
       <div class="gtitle"><span>${g} Grubu</span>
-        <span class="muted">${rows.some(r => favs.includes(r.takim)) ? "⭐ favori takım" : ""}</span></div>
+        <span class="muted">${rows.some(r => favs.includes(r.takim)) ? "⭐" : ""}</span></div>
       <table>
         <tr><th style="text-align:left;padding-left:10px">Takım</th>
             <th>O</th><th>G</th><th>B</th><th>M</th><th>A</th><th>Y</th><th>Av</th><th>P</th></tr>
@@ -363,7 +411,7 @@ $("bracketBox").innerHTML = `
   <div class="round"><h3>ÇEYREK FİNAL (9 – 12 Tem)</h3>${D.bracket.qf.map(m => mk(m)).join("")}</div>
   <div class="round"><h3>YARI FİNAL (14 – 15 Tem)</h3>${D.bracket.sf.map(m => mk(m)).join("")}</div>
   <div class="round"><h3>FİNAL 🏆</h3>${mk(D.bracket.final, "final")}
-    <div class="muted" style="text-align:center;font-size:11px">3.lük maçı: 18 Tem, Miami</div></div>`;
+    <div class="muted" style="text-align:center;font-size:11px;margin-top:6px">3.lük: 18 Tem, Miami</div></div>`;
 $("turPath").innerHTML = "🇹🇷 <b>Türkiye'nin olası yolu:</b> " + D.bracket.note;
 
 /* ---------- Bilgiler ---------- */
