@@ -49,10 +49,7 @@
         scroll-behavior: smooth;
       }
       body {
-        background:
-          url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1400&q=20")
-            top/cover no-repeat fixed,
-          var(--bg);
+        background: var(--bg);
         color: var(--txt);
         font-family: "Trebuchet MS", "Lucida Grande", system-ui, sans-serif;
         line-height: 1.5;
@@ -61,14 +58,25 @@
           color 0.3s;
         min-height: 100vh;
       }
-      [data-t="dark"] body::before {
+      body::before {
         content: "";
         position: fixed;
         inset: 0;
         pointer-events: none;
         z-index: 0;
-        background:
-          rgba(2, 14, 7, 0.75),
+        background-image: url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1400&q=20");
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+      [data-t="dark"] body::before {
+        background-image:
+          linear-gradient(
+            0deg,
+            rgba(2, 14, 7, 0.75),
+            rgba(2, 14, 7, 0.75)
+          ),
           radial-gradient(
             ellipse 70% 50% at 10% 0%,
             rgba(0, 80, 30, 0.22) 0%,
@@ -78,7 +86,25 @@
             ellipse 50% 35% at 90% 100%,
             rgba(0, 50, 20, 0.18) 0%,
             transparent 55%
-          );
+          ),
+          url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1400&q=20");
+        background-position: top, center, center, top;
+        background-size: cover, cover, cover, cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed, fixed, fixed, fixed;
+      }
+      [data-t="light"] body::before {
+        background-image:
+          linear-gradient(
+            0deg,
+            rgba(242, 247, 243, 0.5),
+            rgba(242, 247, 243, 0.5)
+          ),
+          url("https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1400&q=20");
+        background-position: top, top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed, fixed;
       }
       .wrap {
         max-width: 1320px;
@@ -536,6 +562,7 @@
         outline: none;
         transition: border-color 0.2s;
         -webkit-appearance: none;
+        appearance: none;
       }
       .favpicker input:focus {
         border-color: var(--acc);
